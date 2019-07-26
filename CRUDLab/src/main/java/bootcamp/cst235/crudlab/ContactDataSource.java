@@ -9,6 +9,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class contains CRUD functions for a VERY basic contact database
+ * Implements the DataSource interface
+ * @author roy
+ *
+ */
 public class ContactDataSource implements DataSource {
 	private Connection conn;
 	private Statement stmt;
@@ -57,28 +63,28 @@ public class ContactDataSource implements DataSource {
 	}
 
 	/**
-	 * @return the stmt
+	 * @return the stmt (a Statement object)
 	 */
 	public Statement getStmt() {
 		return stmt;
 	}
 
 	/**
-	 * @return the rs
+	 * @return the rs (a ResultSet object)
 	 */
 	public ResultSet getRs() {
 		return rs;
 	}
 
 	/**
-	 * @return the sql
+	 * @return the sql (a PreparedStatement)
 	 */
 	public PreparedStatement getSql() {
 		return sql;
 	}
 
 	/**
-	 * @return the verboseSQL
+	 * @return the verboseSQL setting
 	 */
 	public boolean isVerboseSQL() {
 		return verboseSQL;
@@ -109,6 +115,7 @@ public class ContactDataSource implements DataSource {
 
 	/**
 	 * Creates a people database and a contacts table with id, name, phone
+	 * @return true if the try block succeeds, false if not
 	 */
 	public boolean createDatabaseAndTable() {
 		boolean success = false;
