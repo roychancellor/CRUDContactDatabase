@@ -6,7 +6,7 @@ public class Constants {
 	 */
 	public static final String DB_URL = "jdbc:mysql://localhost:3306";
 	public static final String USER_NAME = "root";
-	public static final String PASSWORD = "root";
+	public static final String PASSWORD = "root";  //I KNOW THIS IS NOT OK...FOR DEMO ONLY
 	public static final String DB_NAME = "business";
 	public static final String CONTACT_TABLE = "contacts";
 	public static final String CONTACT_ID = "id";
