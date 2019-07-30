@@ -3,6 +3,10 @@ package bootcamp.cst235.crudlab;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Class that contains front end methods for Contacts CRUD
+ * @author Roy Chancellor
+ */
 public class FrontEnd {
 	/**
 	 * Class data

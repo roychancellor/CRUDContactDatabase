@@ -4,8 +4,7 @@ import java.util.List;
 
 /**
  * Test driver for the contact database application
- * @author roy
- *
+ * @author Roy Chancellor
  */
 public class Tester {
 

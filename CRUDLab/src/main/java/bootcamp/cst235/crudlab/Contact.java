@@ -2,6 +2,7 @@ package bootcamp.cst235.crudlab;
 
 /**
  * Class for a contact in a contacts database
+ * @author Roy Chancellor
  */
 public class Contact {
 	/**

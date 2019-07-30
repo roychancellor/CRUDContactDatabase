@@ -1,5 +1,9 @@
 package bootcamp.cst235.crudlab;
 
+/**
+ * Class contains constants for use with SQL queries
+ * @author Roy Chancellor
+ */
 public class Constants {
 	/**
 	 * String constants used throughout the application for SQL commands

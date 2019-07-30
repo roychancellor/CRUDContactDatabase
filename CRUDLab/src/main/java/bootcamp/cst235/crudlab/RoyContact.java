@@ -1,9 +1,18 @@
 package bootcamp.cst235.crudlab;
 
+/**
+ * Controller for the Contacts CRUD application
+ * @author Roy Chancellor
+ */
 public class RoyContact {
 	//Create a ContactDataSource object which opens a connection to the database
-	private static ContactDataSource contactSource = new ContactDataSource(false);
-	private static FrontEnd ui = new FrontEnd(contactSource);
+	private ContactDataSource contactSource;
+	private FrontEnd ui;
+	
+	public RoyContact(ContactDataSource cds) {
+		this.contactSource = cds;
+		this.ui = new FrontEnd(contactSource);
+	}
 	
 	/**
 	 * where the program begins

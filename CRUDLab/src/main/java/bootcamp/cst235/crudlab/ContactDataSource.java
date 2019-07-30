@@ -10,11 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Class contains CRUD functions for a VERY basic contact database
+ * Class contains SQL CRUD functions for a VERY basic contact database
  * Implements the DataSource interface
- * @author roy
- *
- */
+ * @author Roy Chancellor
+*/
 public class ContactDataSource implements DataSource {
 	private Connection conn;
 	private Statement stmt;
@@ -298,6 +297,7 @@ public class ContactDataSource implements DataSource {
 
 	/**
 	 * Makes a List of contacts from the contacts in the database
+	 * @param id the id number of the contact
 	 * @return the list of contacts
 	 */
 	public String idToName(int id) {

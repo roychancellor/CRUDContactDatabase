@@ -4,6 +4,7 @@ import java.util.List;
 
 /**
  * Interface of CRUD functions that must be implemented by the application
+ * @author Roy Chancellor (suggested by instructor James Sparks)
  */
 public interface DataSource {
 	/**
