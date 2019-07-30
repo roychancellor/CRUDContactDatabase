@@ -15,6 +15,9 @@ public class Constants {
 	public static final String CONTACT_PHONE = "phoneNumber";
 	public static final String CONTACT_NAME_TYPE = "VARCHAR(200)";
 	public static final String CONTACT_PHONE_TYPE = "VARCHAR(12)";
+	public static final int CREATE = 1;
+	public static final int UPDATE = 0;
+	public static final int DELETE = -1;
 	
 	//SQL command to ADD a contact to the table
 	public static final String ADD_CONTACT = "INSERT INTO "
@@ -22,16 +25,29 @@ public class Constants {
 		+ "(" + CONTACT_NAME + "," + CONTACT_PHONE + ")"
 		+ " VALUES(?,?)";
 	
-	//SQL command to UPDATE a contact
-	public static final String UPDATE_CONTACT = "UPDATE " + DB_NAME + "." + CONTACT_TABLE + " "
+	//SQL command to UPDATE a contact by fullName
+	public static final String UPDATE_CONTACT_BY_NAME = "UPDATE " + DB_NAME + "." + CONTACT_TABLE + " "
 		+ "SET " + CONTACT_NAME + "=?," + CONTACT_PHONE + "=? "
 		+ "WHERE " + CONTACT_NAME + "=?";
 	
-	//SQL command to DELETE a contact
-	public static final String DELETE_CONTACT = "DELETE FROM " + DB_NAME + "." + CONTACT_TABLE + " "
+	//SQL command to UPDATE a contact by id
+	public static final String UPDATE_CONTACT_BY_ID = "UPDATE " + DB_NAME + "." + CONTACT_TABLE + " "
+		+ "SET " + CONTACT_NAME + "=?," + CONTACT_PHONE + "=? "
+		+ "WHERE " + CONTACT_ID + "=?";
+	
+	//SQL command to DELETE a contact by fullName
+	public static final String DELETE_CONTACT_BY_NAME = "DELETE FROM " + DB_NAME + "." + CONTACT_TABLE + " "
 		+ "WHERE " + CONTACT_NAME + "=?";
+	
+	//SQL command to DELETE a contact by id
+	public static final String DELETE_CONTACT_BY_ID = "DELETE FROM " + DB_NAME + "." + CONTACT_TABLE + " "
+		+ "WHERE " + CONTACT_ID + "=?";
 	
 	//SQL command to SELECT all contacts and ORDER BY fullName
 	public static final String GET_CONTACTS = "SELECT * FROM " + DB_NAME + "." + CONTACT_TABLE + " "
-			+ "ORDER BY " + CONTACT_NAME;
+		+ "ORDER BY " + CONTACT_ID;
+	
+	//SQL command to SELECT a fullName by id
+	public static final String ID_TO_NAME = "SELECT " + CONTACT_NAME + " FROM " + DB_NAME + "." + CONTACT_TABLE + " "
+		+ "WHERE " + CONTACT_ID + "=";
 }

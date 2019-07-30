@@ -84,6 +84,13 @@ public class ContactDataSource implements DataSource {
 	}
 
 	/**
+	 * @return the contacts
+	 */
+	public List<Contact> getContacts() {
+		return contacts;
+	}
+
+	/**
 	 * @return the verboseSQL setting
 	 */
 	public boolean isVerboseSQL() {
@@ -194,7 +201,7 @@ public class ContactDataSource implements DataSource {
 			System.out.print("Updating contact [" + oldName + "] to " + contactName + ", " + contactPhone);
 			
 			//Prepare the SQL statement
-			sql = conn.prepareStatement(Constants.UPDATE_CONTACT);
+			sql = conn.prepareStatement(Constants.UPDATE_CONTACT_BY_NAME);
 			if(verboseSQL) printSQL();
 			
 			//Populate statement parameters
@@ -226,7 +233,7 @@ public class ContactDataSource implements DataSource {
 			System.out.print("Deleting contact " + contactName);
 			
 			//Prepare the SQL statement
-			sql = conn.prepareStatement(Constants.DELETE_CONTACT);
+			sql = conn.prepareStatement(Constants.DELETE_CONTACT_BY_NAME);
 			if(verboseSQL) printSQL();
 			
 			//Populate statement parameters
@@ -253,12 +260,11 @@ public class ContactDataSource implements DataSource {
 	}
 
 	/**
+	 * Makes a List of contacts from the contacts in the database
 	 * @return the list of contacts
 	 */
-	public List<Contact> getContacts() {
+	public List<Contact> makeContactListFromDatabase() {
 		try {
-			System.out.print("Retrieving all contacts");
-			
 			//Prepare the SQL statement
 			String sql = Constants.GET_CONTACTS;
 			if(verboseSQL) System.out.println("Executing SQL: " + sql);
@@ -266,22 +272,47 @@ public class ContactDataSource implements DataSource {
 			//Execute SQL statement and get a result set
 			this.rs = stmt.executeQuery(sql);
 			
+			//Clear the contact list so only the most up-to-date list exists
+			this.contacts.clear();
+			
 			//Process the result set
-			int i = 0;
 			while(this.rs.next()) {
 				Contact c = new Contact();
 				//Read the fields in the current record and store in Contact object
 				c.setId(rs.getInt(Constants.CONTACT_ID));
 				c.setFullName(rs.getString(Constants.CONTACT_NAME));
 				c.setPhoneNumber(rs.getString(Constants.CONTACT_PHONE));
-				i++;
 				
 				//Add the contact to the list of contacts
 				this.contacts.add(c);
 			}
-			System.out.println("...Success, retrieved " + i + " rows");				
 			
 			return this.contacts;
+		}
+		catch(SQLException e) {
+			printMethod(new Throwable().getStackTrace()[0].getMethodName());
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	/**
+	 * Makes a List of contacts from the contacts in the database
+	 * @return the list of contacts
+	 */
+	public String idToName(int id) {
+		try {
+			//Prepare the SQL statement
+			String sql = Constants.ID_TO_NAME + Integer.toString(id);
+			if(verboseSQL) System.out.println("Executing SQL: " + sql);
+			
+			//Execute SQL statement and get a result set
+			this.rs = stmt.executeQuery(sql);
+			
+			//Process the result set
+			if(this.rs.next()) {
+				return rs.getString(Constants.CONTACT_NAME);
+			}
 		}
 		catch(SQLException e) {
 			printMethod(new Throwable().getStackTrace()[0].getMethodName());

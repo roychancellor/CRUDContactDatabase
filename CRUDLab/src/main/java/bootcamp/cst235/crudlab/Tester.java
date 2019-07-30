@@ -12,7 +12,7 @@ public class Tester {
 	public static void main(String[] args) {
 		//Create a ContactDataSource object which opens a connection to the database
 		ContactDataSource source = new ContactDataSource(false);
-		
+
 		//Create a database to hold customer contacts
 		System.out.println("\n**** CREATING DATABASE AND CONTACTS TABLE ****");
 		source.createDatabaseAndTable();
@@ -43,7 +43,7 @@ public class Tester {
 		
 		//Retrieve and print all contacts from the DB
 		System.out.println("\n**** RETRIEVING ALL CONTACTS ****");
-		List<Contact> contactList = source.getContacts();
+		List<Contact> contactList = source.makeContactListFromDatabase();
 		
 		//Iterate through the list and print each contact
 		if(contactList != null && contactList.size() > 0) {

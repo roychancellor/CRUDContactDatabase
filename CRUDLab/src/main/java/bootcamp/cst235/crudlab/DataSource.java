@@ -45,5 +45,5 @@ public interface DataSource {
 	 * Converts record fields into Contact fields and returns a list of Contact objects
 	 * @return the list of contacts
 	 */
-	List<Contact> getContacts();
+	List<Contact> makeContactListFromDatabase();
 }
