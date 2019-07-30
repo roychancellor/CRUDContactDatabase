@@ -25,6 +25,21 @@ public class FrontEnd {
 	}
 	
 	/**
+	 * shows the menu to choose which database connection to make
+	 */
+	public static void showConnectionMenu() {
+		printHeader("-", MAIN_HEADER_LENGTH);
+		System.out.println("WHICH DATABASE CONNECTION?");
+		printHeader("-", MAIN_HEADER_LENGTH);
+		System.out.println("1. Connect to Localhost:3306");
+		System.out.println("2. Connect to AWS");
+		printHeader("-", MAIN_HEADER_LENGTH);
+		System.out.println("0. Exit Without Connecting");
+		printHeader("-", MAIN_HEADER_LENGTH);
+		System.out.println("Enter an option:");
+	}
+	
+	/**
 	 * shows the main CRUD menu to the user
 	 */
 	public void showMainMenu() {
@@ -178,7 +193,7 @@ public class FrontEnd {
 	 * @param headString
 	 * @param numTimes
 	 */
-	private void printHeader(String headString, int numTimes) {
+	private static void printHeader(String headString, int numTimes) {
 		for(int i = 0; i < numTimes; i++)
 			System.out.print(headString);
 		System.out.println();

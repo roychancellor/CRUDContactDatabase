@@ -8,9 +8,12 @@ public class Constants {
 	/**
 	 * String constants used throughout the application for SQL commands
 	 */
-	public static final String DB_URL = "jdbc:mysql://localhost:3306";
-	public static final String USER_NAME = "root";
-	public static final String PASSWORD = "root";  //I KNOW THIS IS NOT OK...FOR DEMO ONLY
+	public static final String DB_URL_LOCAL = "jdbc:mysql://localhost:3306";
+	public static final String DB_URL_AWS = "jdbc:mysql://cst235-mysql.czz73jkkcnrj.us-east-2.rds.amazonaws.com:3306";
+	public static final String USER_NAME_LOCAL = "root";
+	public static final String USER_NAME_AWS = "root";
+	public static final String PASSWORD_LOCAL = "root";  //I KNOW THIS IS NOT OK...FOR DEMO ONLY
+	public static final String PASSWORD_AWS = "sqlsqlmysql";  //I KNOW THIS IS NOT OK...FOR DEMO ONLY
 	public static final String DB_NAME = "business";
 	public static final String CONTACT_TABLE = "contacts";
 	public static final String CONTACT_ID = "id";

@@ -9,8 +9,8 @@ public class RoyContact {
 	private ContactDataSource contactSource;
 	private FrontEnd ui;
 	
-	public RoyContact(ContactDataSource cds) {
-		this.contactSource = cds;
+	public RoyContact() {
+		this.contactSource = new ContactDataSource(false);
 		this.ui = new FrontEnd(contactSource);
 	}
 	
@@ -18,44 +18,55 @@ public class RoyContact {
 	 * where the program begins
 	 */
 	public void controller() {
-		//Create a database to hold customer contacts
-		System.out.println("\n**** CREATING DATABASE AND CONTACTS TABLE ****");
-		contactSource.createDatabaseAndTable();
-		
-		//Add contacts to the contacts table...COMMENT OUT LATER FOR PERSISTENCE
-		makeContacts(contactSource);
-		
-		//*** Begin the program
-		boolean isRunning = true;
+		boolean keepRunning = false;
 		do {
-			//Make a list of contacts from the contact database
-			contactSource.makeContactListFromDatabase();
-
-			//Show the main menu
-			ui.showMainMenu();
+			//Connect to a user-specified database
+			keepRunning = contactSource.connectToDatabase();
 			
-			//Get and process the user's option
-			final int NUM_OPTIONS = 3;
-			int userOption = FrontEnd.getIntFromUser(FrontEnd.MENU_EXIT, NUM_OPTIONS,
-				"Oops, enter a value between " + FrontEnd.MENU_EXIT + " and " + NUM_OPTIONS);
-			switch(userOption) {
-				case 0:
-					isRunning = doExit();
-					break;
-				case 1:
-					doCreateContact();
-					break;
-				case 2:
-					doModifyContact(Constants.UPDATE);
-					break;
-				case 3:
-					doModifyContact(Constants.DELETE);
-					break;
-				default:
-					System.out.println("\nInvalid option...should never get here!");
-					break;
+			//If the database is connected, work with the contacts
+			if(contactSource.isConnectedToDb()) {
+				//Create a database to hold customer contacts
+				//COMMENT OUT LATER FOR PERSISTENCE
+				System.out.println("\n**** CREATING DATABASE AND CONTACTS TABLE ****");
+				contactSource.createDatabaseAndTable();
+				
+				//Add contacts to the contacts table
+				//COMMENT OUT LATER FOR PERSISTENCE
+				makeContacts(contactSource);
+				
+				//*** Begin the program
+				boolean isRunning = true;
+				do {
+					//Make a list of contacts from the contact database
+					contactSource.makeContactListFromDatabase();
+		
+					//Show the main menu
+					ui.showMainMenu();
+					
+					//Get and process the user's option
+					final int NUM_OPTIONS = 3;
+					int userOption = FrontEnd.getIntFromUser(FrontEnd.MENU_EXIT, NUM_OPTIONS,
+						"Oops, enter a value between " + FrontEnd.MENU_EXIT + " and " + NUM_OPTIONS);
+					switch(userOption) {
+						case 0:
+							isRunning = doExit();
+							break;
+						case 1:
+							doCreateContact();
+							break;
+						case 2:
+							doModifyContact(Constants.UPDATE);
+							break;
+						case 3:
+							doModifyContact(Constants.DELETE);
+							break;
+						default:
+							System.out.println("\nInvalid option...should never get here!");
+							break;
+					}
+				} while(isRunning);
 			}
-		} while(isRunning);		
+		} while(keepRunning);
 	}
 	
 	/**

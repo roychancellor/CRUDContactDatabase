@@ -21,6 +21,7 @@ public class ContactDataSource implements DataSource {
 	private PreparedStatement sql;
 	private List<Contact> contacts;
 	private boolean verboseSQL;
+	private boolean connectedToDb;
 	
 	//Constructor
 	/**
@@ -28,27 +29,6 @@ public class ContactDataSource implements DataSource {
 	 * @param verboseSQL when true will print all SQL commands to the console
 	 */
 	public ContactDataSource(boolean verboseSQL) {
-		//Open connection to MySQL DBMS
-		try {
-			System.out.print("Connecting to " + Constants.DB_URL);
-			this.conn = DriverManager.getConnection(Constants.DB_URL, Constants.USER_NAME, Constants.PASSWORD);
-			System.out.println("...SUCCESS!");
-			
-			//Create a Statement object
-			try {
-				System.out.print("\nCreating a Statement object for the Connection");
-				this.stmt = conn.createStatement();
-				System.out.println("...SUCCESS!");
-			}
-			catch(SQLException e) {
-				printMethod(new Throwable().getStackTrace()[0].getMethodName());
-				e.printStackTrace();
-			}
-		}
-		catch(SQLException e) {
-			printMethod(new Throwable().getStackTrace()[0].getMethodName());
-			e.printStackTrace();
-		}
 		this.contacts = new ArrayList<Contact>();
 		this.verboseSQL = verboseSQL;
 	}
@@ -103,13 +83,84 @@ public class ContactDataSource implements DataSource {
 		this.verboseSQL = verboseSQL;
 	}
 
+	/**
+	 * @return the connectedToDb
+	 */
+	public boolean isConnectedToDb() {
+		return connectedToDb;
+	}
+
+	/**
+	 * @param connectedToDb the connectedToDb to set
+	 */
+	public void setConnectedToDb(boolean connectedToDb) {
+		this.connectedToDb = connectedToDb;
+	}
+
+	/**
+	 * connects to a user-specified database
+	 * @param verboseSQL
+	 */
+	public boolean connectToDatabase() {
+		String dbURL = "";
+		String dbUser = "";
+		String dbPassword = "";
+		
+		//Get the database connection from the user
+		FrontEnd.showConnectionMenu();
+		int connOption = FrontEnd.getIntFromUser(0, 2, "Oops, enter 0, 1, or 2");
+		switch(connOption) {
+		case 1:
+			dbURL = Constants.DB_URL_LOCAL;
+			dbUser = Constants.USER_NAME_LOCAL;
+			dbPassword = Constants.PASSWORD_LOCAL;
+			break;
+		case 2:
+			dbURL = Constants.DB_URL_AWS;
+			dbUser = Constants.USER_NAME_AWS;
+			dbPassword = Constants.PASSWORD_AWS;
+			break;
+		case 0:
+			this.connectedToDb = false;
+			System.out.println("You will not be connected to a database. Goodbye.");
+		}
+		
+		if(connOption != FrontEnd.MENU_EXIT) {
+			//Open connection to MySQL DBMS
+			try {
+				System.out.print("Connecting to " + dbURL);
+				this.conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+				System.out.println("...SUCCESS!");
+				
+				//Create a Statement object
+				try {
+					System.out.print("\nCreating a Statement object for the Connection");
+					this.stmt = conn.createStatement();
+					System.out.println("...SUCCESS!");
+					this.connectedToDb = true;;
+				}
+				catch(SQLException e) {
+					printMethod(new Throwable().getStackTrace()[0].getMethodName());
+					e.printStackTrace();
+					this.connectedToDb = false;
+				}				
+			}
+			catch(SQLException e) {
+				printMethod(new Throwable().getStackTrace()[0].getMethodName());
+				e.printStackTrace();
+				this.connectedToDb = false;
+			}
+		}
+		return connectedToDb;
+	}
+
 	//Class CRUD methods
 	/**
 	 * Closes a JDBC database connection
 	 */
 	public void close() {
 		try {
-			System.out.print("\nClosing connection to " + Constants.DB_URL);
+			System.out.print("\nClosing connection to " + Constants.DB_URL_AWS);
 			this.conn.close();
 			System.out.println("...SUCCESS!");
 		}
