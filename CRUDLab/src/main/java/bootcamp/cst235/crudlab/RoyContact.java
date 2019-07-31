@@ -27,12 +27,12 @@ public class RoyContact {
 			if(contactSource.isConnectedToDb()) {
 				//Create a database to hold customer contacts
 				//COMMENT OUT LATER FOR PERSISTENCE
-				System.out.println("\n**** CREATING DATABASE AND CONTACTS TABLE ****");
-				contactSource.createDatabaseAndTable();
+				//System.out.println("\n**** CREATING DATABASE AND CONTACTS TABLE ****");
+				//contactSource.createDatabaseAndTable();
 				
 				//Add contacts to the contacts table
 				//COMMENT OUT LATER FOR PERSISTENCE
-				makeContacts(contactSource);
+				//makeContacts(contactSource);
 				
 				//*** Begin the program
 				boolean isRunning = true;
