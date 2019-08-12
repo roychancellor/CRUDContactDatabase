@@ -123,18 +123,18 @@ public class RoyContact {
 	 * Makes the initial contact list
 	 * @param source the database source object
 	 */
-	private void makeContacts(ContactDataSource source) {
-		//Add contacts to the contacts table
-		System.out.println("\n**** ADDING CONTACTS ****");
-		source.addContact("Tony Womack", "123-456-7890");
-		source.addContact("Craig Counsell", "234-567-8901");
-		source.addContact("Luis Gonzales", "345-678-9012");
-		source.addContact("Matt Williams", "456-789-0123");
-		source.addContact("Steve Finley", "567-890-1234");
-		source.addContact("Danny Bautista", "678-901-2345");
-		source.addContact("Mark Grace", "789-012-3456");
-		source.addContact("Damien Miller", "890-123-4567");
-		source.addContact("Curt Schilling", "901-234-5678");
-		source.addContact("Randy Johnson", "012-345-6789");
-	}	
+//	private void makeContacts(ContactDataSource source) {
+//		//Add contacts to the contacts table
+//		System.out.println("\n**** ADDING CONTACTS ****");
+//		source.addContact("Tony Womack", "123-456-7890");
+//		source.addContact("Craig Counsell", "234-567-8901");
+//		source.addContact("Luis Gonzales", "345-678-9012");
+//		source.addContact("Matt Williams", "456-789-0123");
+//		source.addContact("Steve Finley", "567-890-1234");
+//		source.addContact("Danny Bautista", "678-901-2345");
+//		source.addContact("Mark Grace", "789-012-3456");
+//		source.addContact("Damien Miller", "890-123-4567");
+//		source.addContact("Curt Schilling", "901-234-5678");
+//		source.addContact("Randy Johnson", "012-345-6789");
+//	}	
 }
