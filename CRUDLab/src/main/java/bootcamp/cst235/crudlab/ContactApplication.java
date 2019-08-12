@@ -1,11 +1,13 @@
 package bootcamp.cst235.crudlab;
 
+import bootcamp.cst235.crudlab.controller.RoyContact;
+
 /**
  * Starts the RoyContact program
  * @author Roy Chancellor
  *
  */
-public class Main {
+public class ContactApplication {
 	public static void main(String[] args) {
 		//Make a new RoyContact object that receives a new ContactDataSource with
 		//SQL verbose set to false. The ContactDataSource object will set up

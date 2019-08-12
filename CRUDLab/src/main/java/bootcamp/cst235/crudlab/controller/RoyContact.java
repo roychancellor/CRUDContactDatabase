@@ -1,4 +1,8 @@
-package bootcamp.cst235.crudlab;
+package bootcamp.cst235.crudlab.controller;
+
+import bootcamp.cst235.crudlab.model.Constants;
+import bootcamp.cst235.crudlab.model.ContactDataSource;
+import bootcamp.cst235.crudlab.view.FrontEnd;
 
 /**
  * Controller for the Contacts CRUD application

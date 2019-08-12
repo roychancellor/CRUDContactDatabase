@@ -2,6 +2,9 @@ package bootcamp.cst235.crudlab;
 
 import java.util.List;
 
+import bootcamp.cst235.crudlab.model.Contact;
+import bootcamp.cst235.crudlab.model.ContactDataSource;
+
 /**
  * Test driver for the contact database application
  * @author Roy Chancellor

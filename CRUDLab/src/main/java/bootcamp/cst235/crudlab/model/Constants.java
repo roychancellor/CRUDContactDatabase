@@ -1,4 +1,4 @@
-package bootcamp.cst235.crudlab;
+package bootcamp.cst235.crudlab.model;
 
 /**
  * Class contains constants for use with SQL queries

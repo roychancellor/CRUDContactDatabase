@@ -1,7 +1,10 @@
-package bootcamp.cst235.crudlab;
+package bootcamp.cst235.crudlab.view;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import bootcamp.cst235.crudlab.model.Constants;
+import bootcamp.cst235.crudlab.model.ContactDataSource;
 
 /**
  * Class that contains front end methods for Contacts CRUD

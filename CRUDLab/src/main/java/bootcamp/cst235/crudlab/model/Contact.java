@@ -1,4 +1,4 @@
-package bootcamp.cst235.crudlab;
+package bootcamp.cst235.crudlab.model;
 
 /**
  * Class for a contact in a contacts database

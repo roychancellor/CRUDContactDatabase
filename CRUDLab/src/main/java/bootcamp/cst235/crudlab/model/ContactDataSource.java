@@ -1,4 +1,4 @@
-package bootcamp.cst235.crudlab;
+package bootcamp.cst235.crudlab.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import bootcamp.cst235.crudlab.view.FrontEnd;
 
 /**
  * Class contains SQL CRUD functions for a VERY basic contact database
